@@ -1,0 +1,20 @@
+{% extends '../base.html' %}
+
+{% block title %}{{ course.name }}{% endblock %}
+        
+{% block content %}
+    <div class="container pt-5 pd-5">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'courses_page' %}">Courses</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ course.name }}</li>
+          </ol>
+      <h1 class="mb-5">{{ course.name }}</h1>
+      <div class="list-group">
+        {% for lesson in lessons %}
+          <a href="{% url 'lesson_detail_page' slug=course.slug pk=lesson.pk %}" class="list-group-item list-group-item-action">{{ forloop.counter }}. {{ lesson.theme}}</a>
+          {% endfor %}
+      </div>
+  </div>
+{% endblock %}
